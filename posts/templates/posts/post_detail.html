@@ -1,0 +1,8 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    <h2>{{ post.title }}</h2>
+    <p>Автор: {{ post.author }} | {{ post.created_at|date:"d.m.Y H:i" }}</p>
+    <p>{{ post.content }}</p>
+    <a href="/">← Назад к списку</a>
+{% endblock %}
