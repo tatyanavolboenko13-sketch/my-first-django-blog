@@ -5,8 +5,18 @@
 </head>
 <body>
     <h1><a href="/">Мой блог</a></h1>
+
+    <!-- Меню авторизации -->
+    <div style="margin-bottom: 10px;">
+        {% if user.is_authenticated %}
+            Привет, {{ user.username }}!
+            <a href="/accounts/logout/">Выйти</a>
+        {% else %}
+            <a href="{% url 'login' %}">Войти</a> |
+            <a href="{% url 'register' %}">Регистрация</a>
+        {% endif %}
+    </div>
     <hr>
     {% block content %}
     {% endblock %}
 </body>
-</html>
