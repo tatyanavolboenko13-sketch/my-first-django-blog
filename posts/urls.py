@@ -6,4 +6,6 @@ urlpatterns = [
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new/', views.post_create, name='post_create'),
     path('accounts/register/', views.register, name='register'),  # ← добавили эту строку
+# === НОВЫЙ МАРШРУТ ===
+    path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
 ]

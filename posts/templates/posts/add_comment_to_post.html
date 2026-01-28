@@ -1,0 +1,11 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+<h2>Добавить комментарий</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+<a href="{% url 'post_detail' post.pk %}">← Назад к посту</a>
+{% endblock %}

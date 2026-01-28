@@ -4,5 +4,27 @@
     <h2>{{ post.title }}</h2>
     <p>Автор: {{ post.author }} | {{ post.created_at|date:"d.m.Y H:i" }}</p>
     <p>{{ post.content }}</p>
+
+    <hr>
+
+    <!-- Список комментариев -->
+    <h3>Комментарии ({{ post.comments.count }}):</h3>
+    {% for comment in post.comments.all %}
+        <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #ccc;">
+            <strong>{{ comment.author }}</strong> ({{ comment.created_at|date:"d.m.Y H:i" }}):
+            <p>{{ comment.text }}</p>
+        </div>
+    {% empty %}
+        <p>Комментариев пока нет.</p>
+    {% endfor %}
+
+    <!-- Кнопка добавления комментария -->
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'add_comment_to_post' post.pk %}">Добавить комментарий</a></p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Войдите</a>, чтобы оставить комментарий.</p>
+    {% endif %}
+
+    <hr>
     <a href="/">← Назад к списку</a>
 {% endblock %}
